@@ -1,0 +1,45 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+
+
+{% block title%}
+{{ title}}
+{% endblock%}
+
+{% block content%}
+<div class="row" style="margin-bottom: 300px; margin-top: 180 px;">
+        <div class=" col-md-6 offset-md-3">
+            <h3 class="text-center">Сообщения</h3>
+            <hr>
+<div class="container">
+      {% if mess %}
+    {% for el in mess %}
+        <div class="alert alert-warning mt-2">
+              <div>
+            <h3>{{ el.message }}</h3>
+
+            <h6 style="margin-left: 80%; float:right; ">{{ el.pub_data }}</h6>
+            <h5>{{ el.text }} </h5>
+                </div>
+        </div>
+
+    {% endfor %}
+
+    {% else %}
+    <p>Нет записей</p>
+    {% endif%}
+            </div>
+
+
+{% if request.user.is_authenticated %}
+
+      <form action="" method="POST">
+            {% csrf_token %}
+            <textarea name="text" required="" placeholder="Текст сообщения" cols="100%" ></textarea><br>
+            <input type="submit" class="btn btn-success" value="Отправить">
+            </form>
+
+{% endif %}
+                    </div>
+</div>
+{% endblock%}

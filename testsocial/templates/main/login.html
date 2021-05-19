@@ -1,0 +1,24 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+
+
+{% block title%}
+{{ title}}
+
+{% endblock%}
+
+
+{% block content%}
+    <div class="row" style="margin-bottom: 300px; margin-top: 180 px;">
+        <div class=" col-md-6 offset-md-3">
+            <h3 class="text-center">Авторизация</h3>
+            <hr>
+            <form action="" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-success" value="Войти">
+            </form>
+        </div>
+    
+    </div>
+    {% endblock%}
